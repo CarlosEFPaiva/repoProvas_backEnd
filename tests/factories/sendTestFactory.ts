@@ -6,10 +6,10 @@ import { createSemester } from './semesterFactory';
 import { createSubject } from './subjectFactory';
 import { createProfessor } from './professorFactory';
 import { createProfessorAndSubject } from './professorsAndSubjectsFactory';
-import { getNumber } from "../../src/utils/externalLibs/faker";
+import { getNumber } from "../utils/externalLibs/faker";
 import { NewTest } from "../../src/protocols/tests";
 import { CreateTestParameters } from "../testProtocols/testParameters";
-import { getFakeTest } from '../../src/utils/externalLibs/faker';
+import { getFakeTest } from '../utils/externalLibs/faker';
 
 
 export function getInitialOptions(subjects: Subject[], categories: Category[]) {

@@ -3,7 +3,7 @@ import { CreateTestParameters } from "../testProtocols/testParameters";
 
 import Test from "../../src/entities/tests";
 
-import { getFakeTest } from '../../src/utils/externalLibs/faker';
+import { getFakeTest } from '../utils/externalLibs/faker';
 
 export async function createTest(testParameters: CreateTestParameters) {
   const test = await getRepository(Test).create(getFakeTest(testParameters));

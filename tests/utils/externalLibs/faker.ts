@@ -1,7 +1,7 @@
 import faker from 'faker';
-import { CreateTestParameters } from '../../../tests/testProtocols/testParameters';
-import Semester from '../../entities/semesters';
-import Test from '../../entities/tests';
+import { CreateTestParameters } from '../../testProtocols/testParameters';
+import Semester from '../../../src/entities/semesters';
+import Test from '../../../src/entities/tests';
 
 export function getFakeCategory() {
     return {

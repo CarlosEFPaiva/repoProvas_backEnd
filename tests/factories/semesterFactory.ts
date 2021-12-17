@@ -2,7 +2,7 @@ import { getRepository } from "typeorm";
 
 import Semester from "../../src/entities/semesters";
 
-import { getFakeSemester } from '../../src/utils/externalLibs/faker';
+import { getFakeSemester } from '../utils/externalLibs/faker';
 
 export async function createSemester() {
   const semester = await getRepository(Semester).create(getFakeSemester());
