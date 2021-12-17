@@ -23,3 +23,15 @@ export interface CreateTestParameters {
     category: Category,
     professorsAndSubjects: ProfessorsAndSubjects,
 }
+
+export interface TestForFinalUser {
+    year: number,
+    semester: number,
+    category: string,
+    professor: string,
+    link: string,
+    subject: {
+        name: string,
+        semester: string,
+    },
+}

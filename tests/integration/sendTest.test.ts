@@ -5,7 +5,7 @@ import { getConnection } from "typeorm";
 
 import app, { init } from "../../src/app";
 import { clearDatabase } from "../utils/database";
-import { getDifferentNumber, getInitialOptions, getTestingParameters, getValidTestBody } from "../factories/sendTestFactory";
+import { getDifferentNumber, getInitialOptions, getTestingParameters, getValidTestBody } from "../factories/auxiliarTestFactory";
 import { TestingParameters } from "../testProtocols/testParameters";
 
 let testingParameters: TestingParameters;

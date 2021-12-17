@@ -10,6 +10,6 @@ export async function createTest(testParameters: CreateTestParameters) {
   try {
     await getRepository(Test).save(test);
   } finally {
-    return test;
+    return test.adjustForFinalUser();
   }
 }
