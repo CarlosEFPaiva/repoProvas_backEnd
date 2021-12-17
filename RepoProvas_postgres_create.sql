@@ -23,11 +23,10 @@ CREATE TABLE "categories" (
 
 
 
-CREATE TABLE "subject" (
+CREATE TABLE "subjects" (
 	"id" serial NOT NULL,
 	"name" varchar(255) NOT NULL UNIQUE,
-	"semester" integer NOT NULL,
-	UNIQUE ("name", "semester"),
+	"semester_id" integer NOT NULL,
 	CONSTRAINT "subject_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -55,8 +54,20 @@ CREATE TABLE "professors_and_subjects" (
   OIDS=FALSE
 );
 
+
+
+CREATE TABLE "semesters" (
+	"id" serial NOT NULL,
+	"name" varchar(255) NOT NULL UNIQUE,
+	CONSTRAINT "semesters_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
+
 ALTER TABLE "tests" ADD CONSTRAINT "tests_fk0" FOREIGN KEY ("category_id") REFERENCES "categories"("id");
 ALTER TABLE "tests" ADD CONSTRAINT "tests_fk1" FOREIGN KEY ("professor_and_subject_id") REFERENCES "professors_and_subjects"("id");
 
+ALTER TABLE "subject" ADD CONSTRAINT "subject_fk0" FOREIGN KEY ("semester_id") REFERENCES "semesters"("id");
+
 ALTER TABLE "professors_and_subjects" ADD CONSTRAINT "professors_and_subjects_fk0" FOREIGN KEY ("professor_id") REFERENCES "professors"("id");
-ALTER TABLE "professors_and_subjects" ADD CONSTRAINT "professors_and_subjects_fk1" FOREIGN KEY ("subject_id") REFERENCES "subject"("id");
+ALTER TABLE "professors_and_subjects" ADD CONSTRAINT "professors_and_subjects_fk1" FOREIGN KEY ("subject_id") REFERENCES "subjects"("id");
