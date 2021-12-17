@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, OneToMany, JoinColumn } from 'typeorm';
+import ProfessorsAndSubjects from './professorsAndSubjects';
 import Semester from './semesters';
 
 @Entity('subjects')
@@ -9,7 +10,10 @@ export default class Subject {
   @Column()
       name: string;
 
-  @OneToOne(() => Semester)
+  @OneToOne(() => Semester, {eager: true})
   @JoinColumn({ name: 'semester_id' })
       semester: Semester;
+    
+  @OneToMany(() => ProfessorsAndSubjects, professorAndSubject => professorAndSubject.subject)
+      professorsAndSubjects: ProfessorsAndSubjects
 }

@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import ProfessorsAndSubjects from './professorsAndSubjects';
 
 @Entity('professors')
 export default class Professor {
@@ -6,5 +7,8 @@ export default class Professor {
       id: number;
 
   @Column()
-      name: string;
+    name: string;
+    
+  @OneToMany(() => ProfessorsAndSubjects, professorAndSubject => professorAndSubject.professor)
+      professorsAndSubjects: ProfessorsAndSubjects
 }

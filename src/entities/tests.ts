@@ -17,7 +17,7 @@ export default class Test {
   @JoinColumn({ name: 'category_id' })
       category: Category;
 
-  @OneToOne(() => ProfessorsAndSubjects)
+  @OneToOne(() => ProfessorsAndSubjects, {eager: true})
   @JoinColumn({ name: 'professor_and_subject_id' })
       professorsAndSubjects: ProfessorsAndSubjects;
 
