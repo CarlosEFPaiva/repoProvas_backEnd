@@ -1,4 +1,4 @@
-import { getRepository, getConnection, Not, Like } from 'typeorm';
+import { getRepository, getConnection } from 'typeorm';
 import Category from '../entities/categories';
 import Professor from '../entities/professors';
 import ProfessorsAndSubjects from '../entities/professorsAndSubjects';

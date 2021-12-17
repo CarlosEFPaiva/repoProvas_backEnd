@@ -15,7 +15,7 @@ export function newTest(test: NewTest) {
         category: joi.string().min(2).max(255).required(),
         subject: joi.string().min(1).max(255).required(),
         professor: joi.string().min(1).max(255).required(),
-        link: joi.string().pattern(/(http[s]*:\/\/)([a-z\-_0-9/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_/._~:?#[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(pdf)/i).required(),
+        link: joi.string().pattern(/(http[s]*:\/\/)([a-z\-_0-9/.]+)\.([a-z.]{2,4})\/([a-z0-9\-_/._~:?#[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(pdf)/i).required(),
     });
     return !(schema.validate(test)).error;
 }
