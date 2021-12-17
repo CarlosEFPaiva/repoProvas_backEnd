@@ -6,6 +6,7 @@ import 'reflect-metadata';
 
 import connectDatabase from './database';
 import sendTestRouter from './routers/sendTestRouter';
+import viewTestRouter from './routers/viewTestRouter';
 
 import serverMiddlewareError from './middlewares/error';
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/send-test', sendTestRouter);
+app.use('/view-test', viewTestRouter);
 
 app.use(serverMiddlewareError);
 

@@ -23,4 +23,7 @@ export default class Test {
 
   @Column()
       link: string;
+
+  
+
 }
