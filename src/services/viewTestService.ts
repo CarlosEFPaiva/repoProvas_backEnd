@@ -18,12 +18,16 @@ export async function getProfessorsAndTests() {
             tests: (savedTests.filter(({ professorsAndSubjects }) => professorsAndSubjects.professor.name === name).length),
         })
     );
-    return adjustedProfessors;
+    return adjustedProfessors.filter(({tests}) => tests > 0 );
 }
 
 export async function getSubjectsAndTests() {
     const subjects = (await getRepository(Subject)
-        .find()).map((subject) => subject.addNumberOfTests());
+        .find({
+            order: {
+                semester : "ASC",
+            }
+        })).map((subject) => subject.addNumberOfTests());
     const savedTests = await getRepository(Test)
         .find();
     const adjustedSubjects = subjects.map(
@@ -34,7 +38,7 @@ export async function getSubjectsAndTests() {
             tests: (savedTests.filter(({ professorsAndSubjects }) => professorsAndSubjects.subject.name === name).length),
         })
     );
-    return adjustedSubjects;
+    return adjustedSubjects.filter(({tests}) => tests > 0 );
 }
 
 export async function getTestsByProfessorId(professorId: number) {
@@ -53,8 +57,9 @@ export async function getTestsByProfessorId(professorId: number) {
     
     const tests = await getRepository(Test)
         .find({
-            where: professorsAndSubjects.map(({id}) => ({professorsAndSubjects: {id}})),
-            relations: ['professorsAndSubjects' ]
+            where: professorsAndSubjects.map(({ id }) => ({ professorsAndSubjects: { id } })),
+            order: { category: "ASC" },
+            relations: ['professorsAndSubjects' ],
         });
     if (!tests.length) {
         throw new StandardError({
@@ -69,7 +74,7 @@ export async function getTestsBySubjectId(subjectId: number) {
     
     const professorsAndSubjects = await getRepository(ProfessorsAndSubjects)
         .find({
-            where: { subject: { id: subjectId }}
+            where: { subject: { id: subjectId } },
         });
     
     if (!professorsAndSubjects.length) {
@@ -81,8 +86,11 @@ export async function getTestsBySubjectId(subjectId: number) {
     
     const tests = await getRepository(Test)
         .find({
-            where: professorsAndSubjects.map(({id}) => ({professorsAndSubjects: {id}})),
-            relations: ['professorsAndSubjects', 'professorsAndSubjects.professor' ]
+            where: professorsAndSubjects.map(({ id }) => ({ professorsAndSubjects: { id } })),
+            order: {
+                category: "ASC",
+            },
+            relations: ['professorsAndSubjects', 'professorsAndSubjects.professor' ],
         });
     if (!tests.length) {
         throw new StandardError({
