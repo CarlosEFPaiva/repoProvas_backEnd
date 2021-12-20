@@ -20,7 +20,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 exports.__esModule = true;
 var app_1 = __importStar(require("./app"));
-var port = 4000;
+var port = process.env.PORT || 4000;
 app_1.init().then(function () {
     app_1["default"].listen(port, function () {
         console.log("Server is listening on port " + port + ".");
