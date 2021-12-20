@@ -11,7 +11,6 @@ import { NewTest } from "../../src/protocols/tests";
 import { CreateTestParameters } from "../testProtocols/testParameters";
 import { getFakeTest } from '../utils/externalLibs/faker';
 
-
 export function getInitialOptions(subjects: Subject[], categories: Category[]) {
     const years:number[] = [];
     for (let i = 2000; i <= new Date().getFullYear(); i++) {

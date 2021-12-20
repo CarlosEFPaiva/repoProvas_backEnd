@@ -10,5 +10,13 @@ export default class Professor {
     name: string;
     
   @OneToMany(() => ProfessorsAndSubjects, professorAndSubject => professorAndSubject.professor)
-      professorsAndSubjects: ProfessorsAndSubjects
+    professorsAndSubjects: ProfessorsAndSubjects
+  
+  addNumberOfTests() {
+    return {
+      id: this.id,
+      name: this.name,
+      tests: 0,
+    }
+  }
 }

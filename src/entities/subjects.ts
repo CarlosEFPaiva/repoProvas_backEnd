@@ -16,4 +16,13 @@ export default class Subject {
     
   @OneToMany(() => ProfessorsAndSubjects, professorAndSubject => professorAndSubject.subject)
       professorsAndSubjects: ProfessorsAndSubjects
+
+  addNumberOfTests() {
+    return {
+      id: this.id,
+      name: this.name,
+      semester: this.semester,
+      tests: 0,
+    }
+  }
 }

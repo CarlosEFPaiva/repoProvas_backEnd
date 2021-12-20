@@ -5,7 +5,7 @@ import { getConnection } from "typeorm";
 
 import app, { init } from "../../src/app";
 import { clearDatabase } from "../utils/database";
-import { getDifferentNumber, getInitialOptions, getTestingParameters, getValidTestBody } from "../factories/sendTestFactory";
+import { getDifferentNumber, getInitialOptions, getTestingParameters, getValidTestBody } from "../factories/auxiliarTestFactory";
 import { TestingParameters } from "../testProtocols/testParameters";
 
 let testingParameters: TestingParameters;
@@ -47,7 +47,7 @@ describe("/send-test", () => {
 
       const result = await supertest(app).get(`/send-test/professors/${testingParameters.subject1.id}`);
 
-      const expectedResult = [testingParameters.professor1.name];
+      const expectedResult = {professors: [testingParameters.professor1.name]};
 
       expect(result.body).toEqual(expectedResult);
       expect(result.status).toBe(200);

@@ -24,7 +24,7 @@ export async function getProfessorsBySubjectId(req: Request, res: Response, next
             })
         }
         const professors = await sendTestService.getProfessorsBySubjectId(subjectId);
-        return res.status(200).send(professors);
+        return res.status(200).send({professors});
     } catch (error) {
         if (error.name === 'ValidationError') {
             return res.status(400).send(error.message);

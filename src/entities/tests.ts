@@ -13,7 +13,7 @@ export default class Test {
   @Column()
       semester: number;
 
-  @OneToOne(() => Category)
+  @OneToOne(() => Category, { eager: true })
   @JoinColumn({ name: 'category_id' })
       category: Category;
 
@@ -23,4 +23,18 @@ export default class Test {
 
   @Column()
       link: string;
+
+    adjustForFinalUser() {
+        return {
+            year: this.year,
+            semester: this.semester,
+            category: this.category.name,
+            professor: this.professorsAndSubjects.professor.name,
+            subject: {
+                name: this.professorsAndSubjects.subject.name,
+                semester: this.professorsAndSubjects.subject.semester.name,
+            },
+            link: this.link,
+      }
+  }
 }
