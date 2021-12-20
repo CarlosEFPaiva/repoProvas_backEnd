@@ -6,7 +6,7 @@ exports.__esModule = true;
 var dotenv_1 = __importDefault(require("dotenv"));
 var path = '.env.test';
 if (process.env.NODE_ENV === 'development') {
-    path = '.env';
+    path = '.env.dev';
 }
 if (process.env.NODE_ENV === 'production') {
     path = '.env';
