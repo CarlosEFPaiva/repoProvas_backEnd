@@ -40,7 +40,7 @@ function error(err, req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             console.log('Middleware de erro: ', err);
-            return [2 /*return*/, res.sendStatus(500)];
+            return [2 /*return*/, res.status(500).send(err.message)];
         });
     });
 }
